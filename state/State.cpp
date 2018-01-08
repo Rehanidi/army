@@ -1,47 +1,61 @@
-#include <iostream>
+#include "State.h"
 
-State::State(const char* totle, int hitPoints, int damage){
+State::State(const char* title, int hitPoints, int damage){
 	this->title = title;
 	this->hitPoints = hitPoints;
-	this->getHitPointsLimit = hitPoints;
+	this->hitPointsLimit = hitPoints;
 	this->damage = damage;
 }
 
-State::~State();
+State::~State() {}
 
-void ensureIsAlive(){
+void State::ensureIsAlive(){
 	if( this->hitPoints == 0 ){
 		throw OutOfHitPointsException();
 	}
 }
 
-const char* getTitle() const {
+const char* State::getTitle() const {
 	return this->title;
 }
 
-int getHitPoints() const {
+int State::getHitPoints() const {
 	return this->hitPoints;
 }
 
-int getHitPointsLimit() const {
-	return this->getHitPointsLimit;
+int State::getHitPointsLimit() const {
+	return this->hitPointsLimit;
 }
 
-int getDamage() const{
+int State::getDamage() const{
 	return this->damage;
 }
 
-void addhitPoints(int hp){
+void State::addhitPoints(int hp){
 	this->ensureIsAlive();
 
-	int total = this->getHitPoints + hp;
-	if (total > this->getHitPointsLimit){
-		this->getHitPoints = this->getHitPointsLimit;
+	int total = this->hitPoints + hp;
+	if (total > this->hitPointsLimit){
+		this->hitPoints = this->hitPointsLimit;
 		return;
 	}
+	this->hitPoints = total;
 }
-void takeDamage(int dmg){
-	
+
+void State::_takeDamage(int dmg){
+	this->ensureIsAlive();
+
+	if ( dmg > this->hitPoints ) {
+		this->hitPoints = 0;
+		return;
+	}	
+	this->hitPoints -= dmg;
 }
-void takeMagicDamage(int dmg);
+
+void State::takeDamage(int dmg) {
+	this->_takeDamage(dmg);
+}
+
+void State::takeMagicDamage(int dmg){
+	this->_takeDamage(dmg);
 }

@@ -2,7 +2,7 @@
 #define STATE_H
 
 #include <iostream>
-#include "../exception.h"
+#include "../exceptions.h"
 
 class State {
 	protected:
@@ -11,7 +11,7 @@ class State {
 		int hitPointsLimit;
 		int damage;
 
-		void takeDamage(int dmg);
+		void _takeDamage(int dmg);
 
 	public:
 		State(const char* totle, int hitPoints, int damage);
