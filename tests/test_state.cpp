@@ -15,8 +15,10 @@ TEST_CASE("Test state class"){
 
 		for( int i = 1 ; i <= iteration; i++ ){
 			state->takeDamage(damage);
-			
+			int expectedHP = state->getHitPointsLimit() - damage * i;
+			REQUIRE(state->getHitPoints() == expectedHP);	
 		}
+		
 	}
 
 }
