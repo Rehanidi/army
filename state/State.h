@@ -5,28 +5,28 @@
 #include "../exceptions.h"
 
 class State {
-	protected:
-		const char* title;
-		int hitPoints;
-		int hitPointsLimit;
-		int damage;
+    protected:
+        const char* title;
+        int hitPoints;
+        int hitPointsLimit;
+        int damage;
 
-		void _takeDamage(int dmg);
+        void _takeDamage(int dmg);
 
-	public:
-		State(const char* totle, int hitPoints, int damage);
-		virtual ~State();
+    public:
+        State(const char* title, int hitPoints, int damage);
+        virtual ~State();
 
-		void ensureIsAlive();
+        void ensureIsAlive();
 
-		const char* getTitle() const;
-		int getHitPoints() const;
-		int getHitPointsLimit() const;
-		int getDamage() const;
+        const char* getTitle() const;
+        int getHitPoints() const;
+        int getHitPointsLimit() const;
+        int getDamage() const;
 
-		void addhitPoints(int hp);
-		void takeDamage(int dmg);
-		void takeMagicDamage(int dmg);
+        void addHitPoints(int hp);
+        void takeDamage(int dmg);
+        void takeMagicDamage(int dmg);
 };
 
 #endif // STATE_H
