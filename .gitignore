@@ -1,3 +1,8 @@
 *.out
 *.exe
 *.o
+.cproject
+.project
+main.cpp
+makefile
+.settings/
